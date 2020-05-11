@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class MonthCheck {
 	public static void main(String[] args) {
-
 		int monthDate[] = monthSet();
 
 		Scanner scanner = new Scanner(System.in);
@@ -16,6 +15,8 @@ public class MonthCheck {
 
 		System.out.println("계산 결과를 출력합니다.");
 		monthOutput(monthDate, month);
+		
+		System.exit(0);
 	}
 	public static int[] monthSet() {
 		int monthDate[] = new int[12];
@@ -41,8 +42,13 @@ public class MonthCheck {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("월을 입력해주세요.");
 		for (int i = 0; i < rc; i++) {
-			System.out.printf("%d번째 입력:", (i + 1));
+			System.out.printf("%d번째 입력>", (i + 1));
 			month[i] = scanner.nextInt();
+
+			if (month[i] > 12 || 1 > month[i]) {
+			System.out.println("1부터 12 사이의 숫자를 입력해주세요.\n프로그램을 종료합니다.");
+			System.exit(0);
+			}
 		}
 		scanner.close();
 		return month;
@@ -51,10 +57,7 @@ public class MonthCheck {
 	public static void monthOutput(int md[], int m[]) {
 		int i = 0;
 		while (i < m.length) {
-			if (m[i] < 13 && 0 < m[i]) {
-				System.out.printf("%d월은 %d일까지 입니다.\n", m[i], md[m[i] - 1]);
-			} else
-				System.out.println("1부터 12 사이의 숫자를 입력해주세요.");
+			System.out.printf("%d월은 %d일까지 입니다.\n", m[i], md[m[i] - 1]);
 			i++;
 		}
 	}
